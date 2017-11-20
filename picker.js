@@ -1,6 +1,7 @@
 'use strict';
 
 import React, { Component } from 'react'
+import PropTypes from 'prop-types'
 import WheelCurvedPicker from './WheelCurvedPicker'
 const PickerItem = WheelCurvedPicker.Item
 import _ from 'lodash'
@@ -26,9 +27,9 @@ export default class Picker extends Component {
   }
 
   static propTypes = {
-    onValueChange: React.PropTypes.func,
-    pickerData: React.PropTypes.array,
-    selectedValue: React.PropTypes.any
+    onValueChange: PropTypes.func,
+    pickerData: PropTypes.array,
+    selectedValue: PropTypes.any
   }
 
   static defaultProps = {
