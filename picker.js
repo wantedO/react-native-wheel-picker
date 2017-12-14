@@ -10,7 +10,8 @@ import _ from 'lodash'
 const styles = {
   picker: {
     backgroundColor: '#d3d3d3',
-    height: 220
+    height: 220,
+    width: 50
   },
   picker__item: {
     color: '#333333',
@@ -52,7 +53,10 @@ export default class Picker extends Component {
     var calcHeight = (viewHeight / 2) - fontSize;
     return (
       <View style={outerStyles.container}>
-        <View style={[outerStyles.blanker, outerStyles.top, calcHeight]} />
+        <View style={[outerStyles.blanker, outerStyles.top, {
+          height: calcHeight,
+          width: (style && style.width) || styles.picker.width
+        }]} />
         <WheelCurvedPicker
           {...props}
           style={[styles.picker, style]}
