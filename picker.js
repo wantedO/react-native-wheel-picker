@@ -26,6 +26,14 @@ export default class Picker extends Component {
     };
   }
 
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.selectedValue !== this.props.selectedValue) {
+      this.setState({
+        selectedValue: nextProps.selectedValue
+      })
+    }
+  }
+
   static propTypes = {
     onValueChange: PropTypes.func,
     pickerData: PropTypes.array,
