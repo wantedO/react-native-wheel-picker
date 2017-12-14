@@ -1,6 +1,7 @@
 'use strict';
 
 import React, { Component } from 'react'
+import { View, StyleSheet } from 'react-native'
 import PropTypes from 'prop-types'
 import WheelCurvedPicker from './WheelCurvedPicker'
 const PickerItem = WheelCurvedPicker.Item
@@ -46,22 +47,29 @@ export default class Picker extends Component {
 
   render() {
     const { onValueChange, pickerData, itemStyle, style, ...props } = this.props
+    var viewHeight = (style && style.height) || styles.picker.height;
+    var fontSize = (itemStyle && itemStyle.fontSize) || styles.picker__item.fontSize;
+    var calcHeight = (viewHeight / 2) - fontSize;
     return (
-      <WheelCurvedPicker
-        {...props}
-        style={[styles.picker, style]}
-        itemStyle={_.assign({}, styles.picker__item, itemStyle)}
-        selectedValue={this.state.selectedValue}
-        onValueChange={(value) => {
-          this.setState({ selectedValue: value })
-          onValueChange && onValueChange( value )
-        }}
-      >
-        {pickerData.map((data, index) => (
-            <PickerItem key={index} value={parseInt('undefined' === typeof(data.value)? data: data.value)} label={('undefined' === typeof(data.label)? data: data.label).toString()} />
-          )
-        )}
-      </WheelCurvedPicker>
+      <View>
+        <View style={[styles.blanker, styles.top, calcHeight]} />
+        <WheelCurvedPicker
+          {...props}
+          style={[styles.picker, style]}
+          itemStyle={_.assign({}, styles.picker__item, itemStyle)}
+          selectedValue={this.state.selectedValue}
+          onValueChange={(value) => {
+            this.setState({ selectedValue: value })
+            onValueChange && onValueChange( value )
+          }}
+        >
+          {pickerData.map((data, index) => (
+              <PickerItem key={index} value={parseInt('undefined' === typeof(data.value)? data: data.value)} label={('undefined' === typeof(data.label)? data: data.label).toString()} />
+            )
+          )}
+        </WheelCurvedPicker>
+        <View style={[styles.blanker, styles.top, calcHeight]} />
+      </View>
     )
   }
 
@@ -69,3 +77,21 @@ export default class Picker extends Component {
     return this.state.selectedValue
   }
 }
+
+const styles = StyleSheet.create({
+  blanker: {
+    backgroundColor: 'white',
+    opacity: 0.7,
+    position: 'absolute'
+  },
+  top: {
+    top: 0,
+    borderBottomColor: '#aaaaaa',
+    borderBottomWidth: 1
+  },
+  bottom: {
+    bottom: 0,
+    borderTopColor: '#aaaaaa',
+    borderTopWidth: 1
+  }
+});
