@@ -53,10 +53,6 @@ export default class Picker extends Component {
     var calcHeight = (viewHeight / 2) - fontSize;
     return (
       <View style={outerStyles.container}>
-        <View style={[outerStyles.blanker, outerStyles.top, {
-          height: calcHeight,
-          width: (style && style.width) || styles.picker.width
-        }]} />
         <WheelCurvedPicker
           {...props}
           style={[styles.picker, style]}
@@ -72,7 +68,14 @@ export default class Picker extends Component {
             )
           )}
         </WheelCurvedPicker>
-        <View style={[outerStyles.blanker, outerStyles.bottom, calcHeight]} />
+        <View style={[outerStyles.blanker, outerStyles.top, {
+          height: calcHeight,
+          width: (style && style.width) || styles.picker.width
+        }]} />
+        <View style={[outerStyles.blanker, outerStyles.bottom, {
+          height: calcHeight,
+          width: (style && style.width) || styles.picker.width
+        }]} />
       </View>
     )
   }
