@@ -19,9 +19,7 @@ const styles = {
   }
 }
 
-export const Item = PickerItem
-
-export default class Picker extends Component {
+class Picker extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -81,6 +79,9 @@ export default class Picker extends Component {
     return this.state.selectedValue
   }
 }
+
+Picker.Item = PickerItem;
+export default Picker;
 
 const outerStyles = StyleSheet.create({
   container: {
