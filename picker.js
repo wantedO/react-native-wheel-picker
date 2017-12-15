@@ -59,7 +59,7 @@ export default class Picker extends Component {
             onValueChange && onValueChange( value )
           }}
         >
-          {React.Children(children)}
+          {children}
         </WheelCurvedPicker>
         {Platform.OS === 'android'? (
           <View pointerEvents={'none'} style={[outerStyles.blanker, outerStyles.top, {
