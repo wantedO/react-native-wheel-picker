@@ -1,7 +1,7 @@
 'use strict';
 
 import React, { Component } from 'react'
-import { View, StyleSheet } from 'react-native'
+import { View, StyleSheet, Platform } from 'react-native'
 import PropTypes from 'prop-types'
 import WheelCurvedPicker from './WheelCurvedPicker'
 const PickerItem = WheelCurvedPicker.Item
@@ -68,14 +68,18 @@ export default class Picker extends Component {
             )
           )}
         </WheelCurvedPicker>
-        <View pointerEvents={'none'} style={[outerStyles.blanker, outerStyles.top, {
-          height: calcHeight,
-          width: (style && style.width) || styles.picker.width
-        }]} />
-        <View pointerEvents={'none'} style={[outerStyles.blanker, outerStyles.bottom, {
-          height: calcHeight,
-          width: (style && style.width) || styles.picker.width
-        }]} />
+        {Platform.OS === 'android'? (
+          <View pointerEvents={'none'} style={[outerStyles.blanker, outerStyles.top, {
+            height: calcHeight,
+            width: (style && style.width) || styles.picker.width
+          }]} />
+        ): null}
+        {Platform.OS === 'android'? (
+          <View pointerEvents={'none'} style={[outerStyles.blanker, outerStyles.bottom, {
+            height: calcHeight,
+            width: (style && style.width) || styles.picker.width
+          }]} />
+        ): null}
       </View>
     )
   }
