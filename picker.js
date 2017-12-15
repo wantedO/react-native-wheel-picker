@@ -19,6 +19,7 @@ const styles = {
   }
 }
 
+export const Item = PickerItem
 
 export default class Picker extends Component {
   constructor(props) {
@@ -38,16 +39,11 @@ export default class Picker extends Component {
 
   static propTypes = {
     onValueChange: PropTypes.func,
-    pickerData: PropTypes.array,
     selectedValue: PropTypes.any
   }
 
-  static defaultProps = {
-    pickerData: []
-  }
-
   render() {
-    const { onValueChange, pickerData, itemStyle, style, ...props } = this.props
+    const { onValueChange, itemStyle, style, children, ...props } = this.props
     var viewHeight = (style && style.height) || styles.picker.height;
     var fontSize = (itemStyle && itemStyle.fontSize) || styles.picker__item.fontSize;
     var calcHeight = (viewHeight / 2) - (fontSize / 3.5);
@@ -63,10 +59,7 @@ export default class Picker extends Component {
             onValueChange && onValueChange( value )
           }}
         >
-          {pickerData.map((data, index) => (
-              <PickerItem key={index} value={parseInt('undefined' === typeof(data.value)? data: data.value)} label={('undefined' === typeof(data.label)? data: data.label).toString()} />
-            )
-          )}
+          {React.Children(children)}
         </WheelCurvedPicker>
         {Platform.OS === 'android'? (
           <View pointerEvents={'none'} style={[outerStyles.blanker, outerStyles.top, {
