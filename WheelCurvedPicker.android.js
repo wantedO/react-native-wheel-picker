@@ -65,7 +65,7 @@ class WheelCurvedPicker extends React.Component {
 		});
 
     let itemStyle = _.assign({}, defaultItemStyle, props.itemStyle);
-		let textSize = itemStyle.fontSize * 1.5
+		let textSize = parseInt(itemStyle.fontSize * 1.5, 10)
 		let textColor =itemStyle.color
 
 		return {selectedIndex, items, textSize, textColor};
