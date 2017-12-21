@@ -15,7 +15,7 @@ const styles = {
   },
   picker__item: {
     color: '#333333',
-    fontSize: 26
+    fontSize: 33
   }
 }
 
@@ -44,7 +44,7 @@ class Picker extends Component {
     const { onValueChange, itemStyle, style, children, ...props } = this.props
     var viewHeight = (style && style.height) || styles.picker.height;
     var fontSize = (itemStyle && itemStyle.fontSize) || styles.picker__item.fontSize;
-    var calcHeight = (viewHeight / 2) - (fontSize / 3.5);
+    var calcHeight = (viewHeight / 2) - (fontSize / 2.33333);
     return (
       <View style={outerStyles.container}>
         <WheelCurvedPicker

@@ -11,7 +11,7 @@ import {
 import _ from 'lodash';
 
 
-const defaultItemStyle = { color: 'white', fontSize: 26 };
+const defaultItemStyle = { color: 'white', fontSize: 33 };
 const WheelCurvedPickerNativeInterface = {
 	name: 'WheelCurvedPicker',
 	propTypes: {
@@ -65,7 +65,7 @@ class WheelCurvedPicker extends React.Component {
 		});
 
     let itemStyle = _.assign({}, defaultItemStyle, props.itemStyle);
-		let textSize = itemStyle.fontSize
+		let textSize = itemStyle.fontSize * 1.5
 		let textColor =itemStyle.color
 
 		return {selectedIndex, items, textSize, textColor};
